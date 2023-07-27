@@ -19,7 +19,7 @@ app.use(cors(corsOptions));
 app.use(
   "/characters",
   createProxyMiddleware({
-    target: "http://characters:8001",
+    target: process.env.TARGET_CHARACTERS,
     changeOrigin: true,
   })
 );
@@ -27,7 +27,7 @@ app.use(
 app.use(
   "/films",
   createProxyMiddleware({
-    target: "http://films:8002",
+    target: process.env.TARGET_FILMS,
     changeOrigin: true,
   })
 );
@@ -35,11 +35,11 @@ app.use(
 app.use(
   "/planets",
   createProxyMiddleware({
-    target: "http://planets:8003",
+    target: process.env.TARGET_PLANETS,
     changeOrigin: true,
   })
 );
 
-app.listen(8000, () => {
-  console.log("Gateway on port 8000");
+app.listen(process.env.PORT_GATEWAY, () => {
+  console.log("Gateway on port ", process.env.PORT_GATEWAY);
 });
